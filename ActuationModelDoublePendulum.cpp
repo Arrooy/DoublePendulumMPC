@@ -9,28 +9,30 @@ ActuationModelDoublePendulum::ActuationModelDoublePendulum(const boost::shared_p
     this->nv = state->get_nv();
     S = MathBase::MatrixXs(this->nv, this->nu_);
     switch(act_link){
-        
-        default:
-        std::cout << "Actuated link selected out of range.Val is " << act_link << std::endl;
-        case ENDPOINT_LINK:
-            std::cout << "Changing to endpoint link actuation mode." << std::endl;
-            S(1,0) = 1;
-        break;
+ 
         case BASE_LINK:
             std::cout << "Changing to base link actuation mode." << std::endl;
             S(0,0) = 1;
         break;
+        
+        case ENDPOINT_LINK:
+            std::cout << "Changing to endpoint link actuation mode." << std::endl;
+            S(1,1) = 1;
+        break;
+ 
+        default:
+        std::cout << "Actuated link selected out of range.Val is " << act_link << std::endl;
         case BOTH_LINKS:
         std::cout << "Changing to both link actuation mode." << std::endl;
         S(0,0) = 1;
-        S(1,0) = 1;
+        S(1,1) = 1;
         break;
     }
 }
 
 void ActuationModelDoublePendulum::calc(const boost::shared_ptr<ActuationDataAbstract> &data, const Eigen::Ref<const VectorXs> &x,
               const Eigen::Ref<const VectorXs> &u) {    
-    data->tau = S * u;
+    data->tau = u * S;
 }
 
 void ActuationModelDoublePendulum::calcDiff(const boost::shared_ptr<ActuationDataAbstract> &data, const Eigen::Ref<const VectorXs> &x,

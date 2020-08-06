@@ -52,7 +52,7 @@
         xyz="10e-3 0 135e-3"
         rpy="0 0 0" />
       <mass
-        value="0.1" />
+        value="0.2" />
       <inertia
         ixx="18.225e-4"
         ixy="1.2675E-09"
@@ -114,7 +114,7 @@
         xyz="10e-3 1.9371E-10 76e-3"
         rpy="0 0 0" />
       <mass
-        value="0.14" />
+        value="0.15" />
       <inertia
         ixx="5.776e-4"
         ixy="-3.854E-13"

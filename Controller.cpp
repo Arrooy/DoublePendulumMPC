@@ -540,28 +540,30 @@ void Controller::showGraphs()
 {
     #if USE_GRAPHS
     std::vector<std::string> datasets = {"Crocoddyl initial calculated position m0",
-    "Crocoddyl initial calculated position m1",
-    "ODrive real position m0",
-    "ODrive real position m1"};
+    "ODrive real position m0"};
+    graph_logger->plot("Positions m0", datasets,"dt","rad", false, false);
 
-    graph_logger->plot("Positions", datasets,"dt","rad", false, false);
+    datasets = {"Crocoddyl initial calculated position m1",
+    "ODrive real position m1"};
+    graph_logger->plot("Positions m1", datasets,"dt","rad", false, false);
     
     datasets = {"Crocoddyl initial calculated velocity m0",
-    "Crocoddyl initial calculated velocity m1",
-    "ODrive real velocity m0",
+    "ODrive real velocity m0"};
+    graph_logger->plot("Velocities m0", datasets,"dt","rad", false, false);
+
+    datasets = {"Crocoddyl initial calculated velocity m1",
     "ODrive real velocity m1"};
-
-    graph_logger->plot("Velocities", datasets,"dt","rad", false, false);
-
+    graph_logger->plot("Velocities m1", datasets,"dt","rad", false, false);
 
     datasets = {"Crocoddyl initial calculated current m0",
-    "Crocoddyl initial calculated current m1",
     "computed currents m0",
-    "computed currents m1",
-    "ODrive real current m0",
-    "ODrive real current m1"};
+    "ODrive real current m0"};
+    graph_logger->plot("Currents m0", datasets,"dt","Amps", false, false);
 
-    graph_logger->plot("Currents", datasets,"dt","Amps", false, false);
+    datasets = {"Crocoddyl initial calculated current m1",
+    "computed currents m1",
+    "ODrive real current m1"};
+    graph_logger->plot("Currents m1", datasets,"dt","Amps", false, false);
 
     #endif
 }
